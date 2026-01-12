@@ -40,7 +40,9 @@ class SmartVisualizerPlugin extends Plugin {
       ClusterGroup,
     },
     components: {
-      clusters_visualizer: render_clusters_visualizer,
+      clusters_visualizer: {
+        render: render_clusters_visualizer
+      },
     }
   };
 

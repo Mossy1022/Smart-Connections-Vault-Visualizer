@@ -116,15 +116,6 @@ export class SmartObsidianView extends ItemView {
   }
   async wait_for_env_to_load() {
     if (!this.env?.collections_loaded) {
-      // while(!this.env) {
-      //   // button to load env
-      //   this.containerEl.children[1].innerHTML = '<button>Load Smart Environment</button>';
-      //   this.containerEl.children[1].querySelector('button').addEventListener('click', () => {
-      //     this.plugin.load_env();
-      //   });
-      //   await new Promise(r => setTimeout(r, 2000));
-      // }
-      // wait for entities to be initialized
       while (!this.env?.collections_loaded){
         const loading_msg = "Loading Smart Environment...";
         
@@ -142,6 +133,9 @@ export class SmartObsidianView extends ItemView {
   render_view() { throw new Error("render_view must be implemented in subclass"); }
   get container() { return this.containerEl.children[1]; }
   get env() { return this.plugin.env; }
+  /**
+   * @deprecated use env.smart_components
+   */
   get smart_view() {
     if (!this._smart_view) this._smart_view = this.env.init_module('smart_view');
     return this._smart_view;
